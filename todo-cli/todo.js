@@ -8,24 +8,24 @@ const todoList = () => {
   };
 
   const overdue = () => {
-    const a1 = all.filter(
-      (item) => item.dueDate.split("-")[2] < new Date().getDate()
+    const overdue_item = all.filter(
+      (item) => item.dueDate < new Date().toLocaleDateString("en-CA")
     );
-    return a1;
+    return overdue_item;
   };
 
   const dueToday = () => {
-    const b1 = all.filter(
-      (item) => item.dueDate.split("-")[2] === String(new Date().getDate())
+    const dueyoday_item = all.filter(
+      (item) => item.dueDate === new Date().toLocaleDateString("en-CA")
     );
-    return b1;
+    return dueyoday_item;
   };
 
   const dueLater = () => {
-    const b1 = all.filter(
-      (item) => item.dueDate.split("-")[2] > new Date().getDate()
+    const duelater_fun = all.filter(
+      (item) => item.dueDate > new Date().toLocaleDateString("en-CA")
     );
-    return b1;
+    return duelater_fun;
   };
 
   const toDisplayableList = (list) => {
