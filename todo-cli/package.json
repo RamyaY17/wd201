@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "jest": "^29.0.2",
+    "minimist": "^1.2.6",
+    "pg": "^8.8.0",
+    "sequelize": "^6.21.4"
+  },
+  "scripts": {
+    "test": "jest --json --outputFile=results.json --detectOpenHandles"
+  },
+  "name": "todo-cli",
+  "version": "1.0.0",
+  "main": "addTodo.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
