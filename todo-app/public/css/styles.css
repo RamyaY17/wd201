@@ -1,13 +1,11 @@
-body{
-    background: linear-gradient(90deg, whitesmoke, gray);
-    font-family: sans-serif;
+body {
+  background: linear-gradient(90deg, whitesmoke, rgb(204, 204, 204));
+  font-family: sans-serif;
 }
 
-body h3{
-    color: black;
+.todo-item:hover .trash-icon {
+  display: block;
 }
-
-table{
-    color: rgb(57, 55, 55);
-    font-weight: bold;
+body {
+  background-color: whitesmoke;
 }
