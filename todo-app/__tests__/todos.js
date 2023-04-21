@@ -51,9 +51,8 @@ describe("Todo Application", function () {
       .get("/")
       .set("Accept", "application/json");
     const parsedGroupedResponse = JSON.parse(groupedTodosResponse.text);
-    const dueTodayCount = parsedGroupedResponse.duetodayTodoList.length;
-    const latestTodo =
-      parsedGroupedResponse.duetodayTodoList[dueTodayCount - 1];
+    const dueTodayCount = parsedGroupedResponse.duetodaytodo.length;
+    const latestTodo = parsedGroupedResponse.duetodaytodo[dueTodayCount - 1];
 
     res = await agent.get("/");
     csrfToken = extractCsrfToken(res);
@@ -84,8 +83,8 @@ describe("Todo Application", function () {
       .set("Accept", "application/json");
 
     const parsedResponse = JSON.parse(groupedTodosResponse.text);
-    const todoID = parsedResponse.duetodayTodoList.length;
-    const latestTodo = parsedResponse.duetodayTodoList[todoID - 1];
+    const todoID = parsedResponse.duetodaytodo.length;
+    const latestTodo = parsedResponse.duetodaytodo[todoID - 1];
 
     res = await agent.get("/");
     csrfToken = extractCsrfToken(res);
