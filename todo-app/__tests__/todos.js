@@ -39,9 +39,9 @@ describe("Todo App", function () {
     let res = await agent.get("/signup");
     const csrfToken = extractCsrfToken(res);
     res = await agent.post("/users").send({
-      firstName: "testing",
-      lastName: "t",
-      email: "test@test.com",
+      firstName: "tester",
+      lastName: "a",
+      email: "testera@gmail.com",
       password: "12345678",
       _csrf: csrfToken,
     });
@@ -59,7 +59,7 @@ describe("Todo App", function () {
 
   test("Creates a new todo", async () => {
     const agent = request.agent(server);
-    await login(agent, "test@test.com", "12345678");
+    await login(agent, "testera@gmail.com", "12345678");
     let res = await agent.get("/todos");
     let csrfToken = extractCsrfToken(res);
     const response = await agent.post("/todos").send({
@@ -73,7 +73,7 @@ describe("Todo App", function () {
 
   test("Marks a todo as complete", async () => {
     const agent = request.agent(server);
-    await login(agent, "test@test.com", "12345678");
+    await login(agent, "testera@gmail.com", "12345678");
     let res = await agent.get("/todos");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/todos").send({
@@ -106,7 +106,7 @@ describe("Todo App", function () {
 
   test("Marks a todo as incomplete", async () => {
     const agent = request.agent(server);
-    await login(agent, "test@test.com", "12345678");
+    await login(agent, "testera@gmail.com", "12345678");
     let res = await agent.get("/todos");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/todos").send({
@@ -139,7 +139,7 @@ describe("Todo App", function () {
 
   test("Deletes a todo", async () => {
     const agent = request.agent(server);
-    await login(agent, "test@test.com", "12345678");
+    await login(agent, "testera@gmail.com", "12345678");
     let res = await agent.get("/todos");
     let csrfToken = extractCsrfToken(res);
     await agent.post("/todos").send({
