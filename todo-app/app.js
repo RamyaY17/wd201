@@ -143,24 +143,6 @@ app.post(
   }
 );
 
-app.put(
-  "/todos/:id/markAsCompleted",
-  connectEnsureLogin.ensureLoggedIn(),
-  async (request, response) => {
-    console.log("we have to update a todo with ID:", request.params.id);
-    const todo = await Todo.findByPk(request.params.id);
-    try {
-      const updatedtodo = await todo.setCompletionStatus(
-        request.body.completed
-      );
-      return response.json(updatedtodo);
-    } catch (error) {
-      console.log(error);
-      return response.status(422).json(error);
-    }
-  }
-);
-
 app.post("/users", async (request, response) => {
   const hashedPwd = await bcrypt.hash(request.body.password, saltRounds);
   console.log(hashedPwd);
@@ -182,12 +164,30 @@ app.post("/users", async (request, response) => {
   }
 });
 
+app.put(
+  "/todos/:id/markAsCompleted",
+  connectEnsureLogin.ensureLoggedIn(),
+  async (request, response) => {
+    console.log("we have to update a todo with ID:", request.params.id);
+    const todo = await Todo.findByPk(request.params.id);
+    try {
+      const updatedtodo = await todo.setCompletionStatus(
+        request.body.completed
+      );
+      return response.json(updatedtodo);
+    } catch (error) {
+      console.log(error);
+      return response.status(422).json(error);
+    }
+  }
+);
+
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/todos", async function (_request, response) {
-  console.log("Processing list of all Todos ...");
+
+app.get("/todos/:id", async function (request, response) {
   try {
-    const todo = await Todo.getTodo();
+    const todo = await Todo.findByPk(request.params.id);
     return response.json(todo);
   } catch (error) {
     console.log(error);
@@ -195,9 +195,10 @@ app.get("/todos", async function (_request, response) {
   }
 });
 
-app.get("/todos/:id", async function (request, response) {
+app.get("/todos", async function (_request, response) {
+  console.log("Processing list of all Todos ...");
   try {
-    const todo = await Todo.findByPk(request.params.id);
+    const todo = await Todo.getTodo();
     return response.json(todo);
   } catch (error) {
     console.log(error);
