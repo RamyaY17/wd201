@@ -1,5 +1,5 @@
 {
-  "name": "todo-app",
+  "name": "todo-Application",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
@@ -29,7 +29,7 @@
     "pretest": "NODE_ENV=test npx sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create",
     "test": "NODE_ENV=test jest --detectOpenHandles"
   },
-  "author": "",
+  "author": "Ramya",
   "license": "ISC",
   "description": ""
 }
