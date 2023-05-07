@@ -93,6 +93,14 @@ app.get(
     const duetodayTodoItems = await Todo.duetodayTodoItems(loggedInUser);
     const duelaterTodoItems = await Todo.duelaterTodoItems(loggedInUser);
     const completedTodoItems = await Todo.markAsCompletedItems(loggedInUser);
+    const getUserName = await User.findOne({
+      where: {
+        id: request.user.id,
+      },
+    });
+    console.log("====================================");
+    console.log(getUserName.firstName);
+    console.log("====================================");
     if (request.accepts("html")) {
       response.render("todo", {
         title: "Todo-Manager",
@@ -101,6 +109,7 @@ app.get(
         duetodayTodoItems,
         completedTodoItems,
         csrfToken: request.csrfToken(),
+        getUserName,
       });
     } else {
       response.json({ overdueTodoItems, duetodayTodoItems, duelaterTodoItems });
@@ -161,6 +170,7 @@ app.post("/users", async (request, response) => {
     });
   } catch (error) {
     console.log(error);
+    return response.send("Already email exist");
   }
 });
 
@@ -183,7 +193,6 @@ app.put(
 );
 
 app.use(express.static(path.join(__dirname, "public")));
-
 
 app.get("/todos/:id", async function (request, response) {
   try {
