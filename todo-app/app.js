@@ -166,7 +166,7 @@ app.post("/users", async (request, response) => {
       if (err) {
         console.log(error);
       }
-      response.redirect("todos");
+     return response.redirect("todos");
     });
   } catch (error) {
     console.log(error);
